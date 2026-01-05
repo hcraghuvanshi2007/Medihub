@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediHub - Your Trusted Healthcare Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1fa5a0;
+            --primary-hover: #178a85;
+            --secondary-color: #e97856;
+            --dark-bg: #1f2937;
+            --light-bg: #f9fafb;
+            --text-dark: #111827;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #ffffff;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .search-icon, .user-icon {
+            cursor: pointer;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+
+        .search-icon:hover, .user-icon:hover {
+            color: var(--primary-color);
+        }
+
+        .cart-badge {
+            position: relative;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .btn-upload {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-upload:hover {
+            background: var(--primary-hover);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #15a09b 100%);
+            color: white;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-badge::before {
+            content: '✓';
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            background: white;
+        }
+
+        .search-box button {
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 1rem;
+        }
+
+        .search-box button:hover {
+            background: #d86743;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.95rem;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-text span {
+            opacity: 0.9;
+            font-size: 0.85rem;
+        }
+
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: var(--light-bg);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+
+        .section-title-group h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title-group p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        .view-all-btn {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary-color);
+            padding: 0.75rem 1.75rem;
+            border-radius: var(--radius);
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .view-all-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #e8f4f3, #d4e8e6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-color);
+            color: white;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .article-content p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .article-author {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, #fef3f0, #fce8e3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 0.9rem;
+            border-radius: 25px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 0.9rem;
+        }
+
+        .review-count {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .category-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .newsletter {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 3rem;
+        }
+
+        .newsletter-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.9rem;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form button {
+            padding: 0.9rem 2rem;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #d86743;
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul a:hover {
+            color: white;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 380px;
+            max-height: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9999;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #1fa5a0 0%, #15a09b 100%);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .chat-header-subtitle {
+            font-size: 0.75rem;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+
+        .chat-header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chat-icon-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .chat-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #fafafa;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #1fa5a0;
+            border-radius: 3px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, #1fa5a0, #15a09b);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #e0e0e0;
+        }
+
+        .message-content {
+            max-width: 75%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #1fa5a0, #15a09b);
+            color: white;
+        }
+
+        .message-time {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 14px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #1fa5a0;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.3;
+            }
+            30% {
+                opacity: 1;
+            }
+        }
+
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid #e0e0e0;
+            background: white;
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 24px;
+            padding: 10px 16px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #1fa5a0;
+            box-shadow: 0 0 0 3px rgba(31, 165, 160, 0.1);
+        }
+
+        .chat-send-btn {
+            background: linear-gradient(135deg, #1fa5a0, #15a09b);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: transform 0.2s;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .chat-send-btn:active {
+            transform: scale(0.95);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .quick-reply-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            text-align: left;
+        }
+
+        .quick-reply-btn:hover {
+            background: #f0f0f0;
+            border-color: #1fa5a0;
+        }
+
+        .chat-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1fa5a0, #15a09b);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(31, 165, 160, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            z-index: 9998;
+        }
+
+        .chat-toggle-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-toggle-btn.hidden {
+            display: none;
+        }
+
+        .chat-widget.minimized {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .newsletter-container {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chat-widget {
+                width: calc(100vw - 40px);
+                max-height: 70vh;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                gap: 0.5rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .articles-grid, .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 2rem 1rem;
+            }
+
+            .chat-widget {
+                width: calc(100vw - 20px);
+                max-height: 70vh;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease-in-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(31, 165, 160, 0.1);
+        }
+
+        .search-results {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-result-item:hover {
+            border-color: var(--primary-color);
+            background: rgba(31, 165, 160, 0.05);
+        }
+
+        .search-result-item h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .search-result-item p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .user-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .user-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .login-form input {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 0.95rem;
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(31, 165, 160, 0.1);
+        }
+
+        .login-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .login-btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .user-info {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+
+        .user-info p {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .logout-btn {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #d9653e;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-right: 1rem;
+        }
+
+        .remove-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .remove-btn:hover {
+            background: #d9653e;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--text-light);
+        }
+
+        .cart-total {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .checkout-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">❤️</div>
+                <span>MediHub</span>
+            </a>
+            <nav>
+                <a href="medicines.html">Medicines</a>
+                <a href="products.html">Health Products</a>
+                <a href="labs.html">Lab Tests</a>
+                <a href="doctors.html">Consult Doctor</a>
+            </nav>
+            <div class="header-actions">
+                <button class="search-icon" id="searchBtn" style="background: none; border: none; cursor: pointer; font-size: 1.25rem;">🔍</button>
+                <button class="user-icon" id="userBtn" style="background: none; border: none; cursor: pointer; font-size: 1.25rem;">👤</button>
+                <div class="cart-badge">
+                    <button class="search-icon" id="cartBtn" style="background: none; border: none; cursor: pointer; font-size: 1.25rem;">🛒</button>
+                    <span class="badge">2</span>
+                </div>
+                <a href="upload-prescription.html" class="btn-upload">Upload Prescription</a>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="hero">
+        <div class="hero-container">
+            <div class="trust-badge">Trusted by 1M+ customers</div>
+            <h1>Your Health, Our Priority</h1>
+            <p class="hero-subtitle">Get medicines delivered to your doorstep with trusted quality and care. Browse thousands of products at the best prices.</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search medicines, health products...">
+                <button>Search</button>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <span class="feature-icon">🚚</span>
+                    <div class="feature-text">
+                        <strong>Free Delivery</strong>
+                        <span>On orders above $50</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <div class="feature-text">
+                        <strong>100% Genuine</strong>
+                        <span>Verified products</span>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⏰</span>
+                    <div class="feature-text">
+                        <strong>24/7 Support</strong>
+                        <span>Always here for you</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <section id="blog">
+        <div class="section-header">
+            <div class="section-title-group">
+                <div class="section-label">Health Blog</div>
+                <h2>Latest Health Tips</h2>
+                <p>Expert advice and insights to help you live a healthier, happier life.</p>
+            </div>
+            <a href="#" class="view-all-btn">Read All Articles →</a>
+        </div>
+
+        <div class="articles-grid">
+            <div class="article-card">
+                <div class="article-image" style="background-image: url('img/2.png'); background-size: cover; background-position: center;">
+                    <span class="article-badge">Nutrition</span>
+                </div>
+                <div class="article-content">
+                    <h3>10 Essential Vitamins Your Body Needs Daily</h3>
+                    <p>Discover the key vitamins that support your immune system, energy levels, and overall health.</p>
+                    <div class="article-meta">
+                        <span class="article-author">👤 Dr. Sarah Johnson</span>
+                        <span>Jan 2, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">
+                    <div class="article-image" style="background-image: url('img/3.png'); background-size: cover; background-position: center;"></div>
+                    <span class="article-badge">Wellness</span>
+                </div>
+                <div class="article-content">
+                    <h3>How to Boost Your Immune System Naturally</h3>
+                    <p>Simple lifestyle changes and natural remedies to strengthen your body's defense system.</p>
+                    <div class="article-meta">
+                        <span class="article-author">👤 Dr. Michael Chen</span>
+                        <span>Jan 1, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card">
+                <div class="article-image">
+                    <div class="article-image" style="background-image: url('img/4.png'); background-size: cover; background-position: center;"></div>
+                    <span class="article-badge">Health Tips</span>
+                </div>
+                <div class="article-content">
+                    <h3>Understanding Common Cold vs Flu Symptoms</h3>
+                    <p>Learn to differentiate between cold and flu symptoms and when to seek medical attention.</p>
+                    <div class="article-meta">
+                        <span class="article-author">👤 Dr. Emily Davis</span>
+                        <span>Dec 30, 2025</span>
+                        <span>4 min read</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="products" style="background: var(--light-bg);">
+        <div class="section-header">
+            <div class="section-title-group">
+                <div class="section-label">Best Sellers</div>
+                <h2>Featured Products</h2>
+                <p>Discover our most popular health products trusted by thousands of customers.</p>
+            </div>
+            <a href="#" class="view-all-btn">View All Products →</a>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image" style="background-image: url('img/1.png'); background-size: cover; background-position: center;"></div>
+                    <span class="discount-badge">40% OFF</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Vitamins</div>
+                    <h3 class="product-name">Vitamin D3 5000 IU Softgels</h3>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(342)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image" style="background-image: url('img/5.png'); background-size: cover; background-position: center;"></div>
+                    <span class="discount-badge">33% OFF</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Supplements</div>
+                    <h3 class="product-name">Omega-3 Fish Oil 1000mg</h3>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(218)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image" style="background-image: url('img/6.png'); background-size: cover; background-position: center;"></div>
+                    <span class="discount-badge">29% OFF</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Digestive Health</div>
+                    <h3 class="product-name">Probiotic 50 Billion CFU</h3>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(156)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-image" style="background-image: url('img/7.png'); background-size: cover; background-position: center;"></div>
+                    <span class="discount-badge">35% OFF</span>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Multivitamins</div>
+                    <h3 class="product-name">Multivitamin Complete Formula</h3>
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span class="review-count">(412)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="categories">
+        <div class="section-header">
+            <div class="section-title-group">
+                <div class="section-label">Browse Categories</div>
+                <h2>What are you looking for?</h2>
+                <p>Explore our wide range of healthcare products and services tailored for your wellbeing.</p>
+            </div>
+        </div>
+
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon">💊</div>
+                <h3 class="category-name">Medicines</h3>
+                <p class="category-desc">Prescription & OTC medicines at best prices</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">👨‍⚕️</div>
+                <h3 class="category-name">Consult Doctors</h3>
+                <p class="category-desc">Expert doctors available 24/7 online</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🧪</div>
+                <h3 class="category-name">Lab Tests</h3>
+                <p class="category-desc">Book tests with home sample collection</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">❤️</div>
+                <h3 class="category-name">Heart Care</h3>
+                <p class="category-desc">Cardiac health products & supplements</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🧠</div>
+                <h3 class="category-name">Mental Wellness</h3>
+                <p class="category-desc">Support for stress, sleep & mood</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">🍎</div>
+                <h3 class="category-name">Nutrition</h3>
+                <p class="category-desc">Vitamins, supplements & superfoods</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">👶</div>
+                <h3 class="category-name">Baby Care</h3>
+                <p class="category-desc">Trusted products for your little one</p>
+            </div>
+            <div class="category-card">
+                <div class="category-icon">💪</div>
+                <h3 class="category-name">Fitness</h3>
+                <p class="category-desc">Protein, workout & wellness products</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section>
+        <div class="newsletter">
+            <div class="newsletter-container">
+                <div>
+                    <h2>Subscribe to Our Newsletter</h2>
+                    <p>Get the latest health tips and exclusive offers delivered to your inbox.</p>
+                </div>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    ❤️ MediHub
+                </div>
+                <p class="footer-desc">Your trusted partner for all healthcare needs. Quality medicines and wellness products delivered to your doorstep.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="LinkedIn">in</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#medicines">Medicines</a></li>
+                    <li><a href="#products">Health Products</a></li>
+                    <li><a href="#labs">Lab Tests</a></li>
+                    <li><a href="#doctors">Consult Doctor</a></li>
+                    <li><a href="#blog">Health Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns Policy</a></li>
+                    <li><a href="#">FAQs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>📞 1-800-MEDIHUB</li>
+                    <li>24/7 Support</li>
+                    <li><a href="mailto:support@medihub.com">support@medihub.com</a></li>
+                    <li>📍 123 Health Street</li>
+                    <li>Medical City, MC 12345</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 MediHub. All rights reserved. | <a href="#" style="color: inherit;">Privacy Policy</a> | <a href="#" style="color: inherit;">Terms of Service</a> | <a href="#" style="color: inherit;">Cookie Policy</a></p>
+        </div>
+    </footer>
+
+    
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div>
+                <h3>MediHub Support</h3>
+                <div class="chat-header-subtitle">Typically replies instantly</div>
+            </div>
+            <div class="chat-header-actions">
+                <button class="chat-icon-btn" id="minimizeBtn" title="Minimize">−</button>
+                <button class="chat-icon-btn" id="closeBtn" title="Close">✕</button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-avatar">🤖</div>
+                <div>
+                    <div class="message-content">
+                        Hi! 👋 Welcome to MediHub. How can I help you today?
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+
+            <div class="quick-replies" id="quickReplies">
+                <button class="quick-reply-btn" onclick="sendMessage('I need help with my order')">📦 Help with my order</button>
+                <button class="quick-reply-btn" onclick="sendMessage('How do I track my medicine?')">🔍 Track my medicine</button>
+                <button class="quick-reply-btn" onclick="sendMessage('What about delivery charges?')">🚚 Delivery information</button>
+                <button class="quick-reply-btn" onclick="sendMessage('Consult with a doctor')">👨‍⚕️ Consult a doctor</button>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <input 
+                type="text" 
+                class="chat-input" 
+                id="chatInput" 
+                placeholder="Type your message..."
+                onkeypress="handleKeyPress(event)"
+            >
+            <button class="chat-send-btn" onclick="sendMessage()" title="Send">📤</button>
+        </div>
+    </div>
+
+    
+    <button class="chat-toggle-btn" id="chatToggleBtn" title="Open Chat">
+        💬
+    </button>
+
+    <script>
+        const searchModal = document.getElementById('searchModal') || createModal('searchModal', 'Search Products', searchModalContent());
+        const userModal = document.getElementById('userModal') || createModal('userModal', 'My Account', userModalContent());
+        const cartModal = document.getElementById('cartModal') || createModal('cartModal', 'Shopping Cart', cartModalContent());
+
+        function createModal(id, title, content) {
+            const modal = document.createElement('div');
+            modal.id = id;
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>${title}</h2>
+                        <button class="modal-close" onclick="closeModal('${id}')">&times;</button>
+                    </div>
+                    ${content}
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal(id);
+                }
+            });
+            return modal;
+        }
+
+        function searchModalContent() {
+            return `
+                <div style="margin-bottom: 1.5rem;">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search medicines, products, tests...">
+                    <div class="search-results" id="searchResults">
+                        <p style="color: var(--text-light); text-align: center; padding: 2rem 0;">Type to search...</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function userModalContent() {
+            return `
+                <div id="loginSection" class="user-section">
+                    <h3>Login</h3>
+                    <div class="login-form">
+                        <input type="email" placeholder="Email address" id="userEmail">
+                        <input type="password" placeholder="Password" id="userPassword">
+                        <button class="login-btn" onclick="loginUser()">Login</button>
+                    </div>
+                </div>
+                <div id="userInfoSection" class="user-section" style="display: none;">
+                    <h3>Welcome!</h3>
+                    <div class="user-info">
+                        <p><strong id="userDisplayName">User Name</strong></p>
+                        <p>Email: <span id="userDisplayEmail">user@email.com</span></p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">My Orders</h4>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">
+                            <p>Order #12345 - $45.99 (Delivered)</p>
+                            <p>Order #12344 - $32.50 (In Transit)</p>
+                        </div>
+                    </div>
+                    <button class="logout-btn" onclick="logoutUser()">Logout</button>
+                </div>
+            `;
+        }
+
+        function cartModalContent() {
+            return `
+                <div id="cartItemsList" class="cart-items">
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>Aspirin 500mg</h4>
+                            <p>Qty: 2 x $12.99</p>
+                        </div>
+                        <span class="cart-item-price">$25.98</span>
+                        <button class="remove-btn" onclick="removeCartItem(1)">Remove</button>
+                    </div>
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <h4>Vitamin D3</h4>
+                            <p>Qty: 1 x $18.50</p>
+                        </div>
+                        <span class="cart-item-price">$18.50</span>
+                        <button class="remove-btn" onclick="removeCartItem(2)">Remove</button>
+                    </div>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotalPrice">$44.48</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            `;
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function loginUser() {
+            const email = document.getElementById('userEmail')?.value;
+            const password = document.getElementById('userPassword')?.value;
+            if (email && password) {
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('userInfoSection').style.display = 'block';
+                document.getElementById('userDisplayEmail').textContent = email;
+                document.getElementById('userDisplayName').textContent = email.split('@')[0];
+            }
+        }
+
+        function logoutUser() {
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('userInfoSection').style.display = 'none';
+            document.getElementById('userEmail').value = '';
+            document.getElementById('userPassword').value = '';
+        }
+
+        function removeCartItem(itemId) {
+            alert(`Item removed from cart`);
+        }
+
+        function checkout() {
+            alert('Proceeding to checkout...');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function() {
+                    const query = this.value.toLowerCase();
+                    if (query.length > 0) {
+                        performSearch(query);
+                    } else {
+                        document.getElementById('searchResults').innerHTML = '<p style="color: var(--text-light); text-align: center; padding: 2rem 0;">Type to search...</p>';
+                    }
+                });
+            }
+        });
+
+        function performSearch(query) {
+            const results = [
+                { name: 'Aspirin 500mg', type: 'Medicine', price: '$12.99' },
+                { name: 'Vitamin D3', type: 'Supplement', price: '$18.50' },
+                { name: 'Blood Pressure Monitor', type: 'Equipment', price: '$35.00' },
+                { name: 'Thyroid Profile Test', type: 'Lab Test', price: '$42.00' },
+                { name: 'Dr. Rajesh Kumar', type: 'Doctor', price: '$25/15min' }
+            ];
+
+            const filtered = results.filter(r => 
+                r.name.toLowerCase().includes(query) || r.type.toLowerCase().includes(query)
+            );
+
+            const resultsDiv = document.getElementById('searchResults');
+            if (filtered.length === 0) {
+                resultsDiv.innerHTML = '<p style="color: var(--text-light); text-align: center; padding: 2rem 0;">No results found</p>';
+                return;
+            }
+
+            resultsDiv.innerHTML = filtered.map(r => `
+                <div class="search-result-item" onclick="selectSearchResult('${r.name}')">
+                    <h4>${r.name}</h4>
+                    <p>${r.type} • ${r.price}</p>
+                </div>
+            `).join('');
+        }
+
+        function selectSearchResult(name) {
+            alert(`Selected: ${name}`);
+        }
+
+        document.getElementById('searchBtn').addEventListener('click', () => openModal('searchModal'));
+        document.getElementById('userBtn').addEventListener('click', () => openModal('userModal'));
+        document.getElementById('cartBtn').addEventListener('click', () => openModal('cartModal'));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('Category: ' + this.querySelector('.category-name').textContent);
+            });
+        });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productName = this.querySelector('.product-name').textContent;
+                alert('Added to cart: ' + productName);
+            });
+        });
+
+        const chatWidget = document.getElementById('chatWidget');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const minimizeBtn = document.getElementById('minimizeBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const chatToggleBtn = document.getElementById('chatToggleBtn');
+        const quickReplies = document.getElementById('quickReplies');
+
+        let isMinimized = false;
+
+        minimizeBtn.addEventListener('click', () => {
+            isMinimized = !isMinimized;
+            if (isMinimized) {
+                chatWidget.classList.add('minimized');
+                chatToggleBtn.classList.remove('hidden');
+            } else {
+                chatWidget.classList.remove('minimized');
+                chatToggleBtn.classList.add('hidden');
+            }
+        });
+
+        closeBtn.addEventListener('click', () => {
+            chatWidget.style.display = 'none';
+            chatToggleBtn.classList.remove('hidden');
+        });
+
+        chatToggleBtn.addEventListener('click', () => {
+            chatWidget.style.display = 'flex';
+            chatToggleBtn.classList.add('hidden');
+            isMinimized = false;
+            chatWidget.classList.remove('minimized');
+            chatInput.focus();
+        });
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+
+        function sendMessage(text = null) {
+            const message = text || chatInput.value.trim();
+            
+            if (!message) return;
+
+            if (quickReplies) {
+                quickReplies.remove();
+            }
+
+            const userMessageEl = document.createElement('div');
+            userMessageEl.className = 'message user';
+            userMessageEl.innerHTML = `
+                <div class="message-content">${escapeHtml(message)}</div>
+            `;
+            chatMessages.appendChild(userMessageEl);
+
+            chatInput.value = '';
+            chatInput.focus();
+
+            scrollToBottom();
+
+            setTimeout(() => {
+                addBotTypingIndicator();
+                setTimeout(() => {
+                    removeBotTypingIndicator();
+                    addBotResponse(message);
+                }, 1500);
+            }, 300);
+        }
+
+        function addBotTypingIndicator() {
+            const typingEl = document.createElement('div');
+            typingEl.className = 'message bot';
+            typingEl.id = 'typingIndicator';
+            typingEl.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingEl);
+            scrollToBottom();
+        }
+
+        function removeBotTypingIndicator() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        function addBotResponse(userMessage) {
+            let response = '';
+
+            const userMsg = userMessage.toLowerCase();
+
+            if (userMsg.includes('order') || userMsg.includes('medicine')) {
+                response = "🛍️ You can track your order by going to 'My Orders' section. What's your order ID?";
+            } else if (userMsg.includes('delivery') || userMsg.includes('shipping')) {
+                response = "🚚 Free delivery on orders above $50! Standard delivery takes 2-3 business days. Express delivery is available for urgent needs.";
+            } else if (userMsg.includes('doctor') || userMsg.includes('consult')) {
+                response = "👨‍⚕️ Our expert doctors are available 24/7. Would you like to book a consultation? It usually costs $15 for a 15-minute session.";
+            } else if (userMsg.includes('price') || userMsg.includes('cost') || userMsg.includes('expensive')) {
+                response = "💰 We offer competitive pricing and regular discounts. Browse our 'Best Sellers' for top deals!";
+            } else if (userMsg.includes('payment') || userMsg.includes('card')) {
+                response = "💳 We accept all major credit/debit cards, UPI, wallets, and net banking. Your payment is 100% secure.";
+            } else if (userMsg.includes('return') || userMsg.includes('refund')) {
+                response = "↩️ We have a 30-day return policy. If you're not satisfied, contact our support team for hassle-free returns.";
+            } else if (userMsg.includes('thank') || userMsg.includes('thanks')) {
+                response = "😊 You're welcome! Is there anything else I can help you with?";
+            } else {
+                const responses = [
+                    "I understand. Let me help you with that. What specific information do you need?",
+                    "Great question! Could you provide more details?",
+                    "I'm here to assist. How can I make this easier for you?",
+                    "Thanks for reaching out! What would you like to know more about?"
+                ];
+                response = responses[Math.floor(Math.random() * responses.length)];
+            }
+
+            const botMessageEl = document.createElement('div');
+            botMessageEl.className = 'message bot';
+            botMessageEl.innerHTML = `
+                <div class="message-avatar">🤖</div>
+                <div>
+                    <div class="message-content">${response}</div>
+                    <div class="message-time">Just now</div>
+                </div>
+            `;
+            chatMessages.appendChild(botMessageEl);
+            scrollToBottom();
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>\"']/g, m => map[m]);
+        }
+
+        chatInput.focus();
+    </script>
+</body>
+</html>
