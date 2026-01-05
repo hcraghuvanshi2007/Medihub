@@ -2,8 +2,6 @@
 
 A modern, fully responsive healthcare e-commerce website with integrated AI-powered chat support. Built with pure HTML, CSS, and JavaScript.
 
-![MediHub Banner](https://via.placeholder.com/1200x400?text=MediHub+-+Healthcare+E-Commerce)
-
 ## ✨ Features
 
 ### 🎯 Main Website
@@ -40,10 +38,10 @@ A modern, fully responsive healthcare e-commerce website with integrated AI-powe
 
 ## 📁 Project Structure
 
-medihub/
-├── index.html              # Main HTML file with all content and styles
+.vscode/
+├── 1.html              # Main HTML file with all content and styles
 ├── README.md              # Project documentation
-└── assets/                # Images and other assets (optional)
+└── images/                # Images and other assets (optional)
 
 ## 🚀 Getting Started
 
